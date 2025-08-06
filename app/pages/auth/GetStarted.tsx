@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, Grid, Typography } from '@mui/material';
 import type { Route } from './+types/GetStarted';
 import { data } from 'react-router';
-import { stateCookie } from '~/utils/cookies.server';
+import { stateCookie } from '~/utils/cookies';
 import { authDomain } from '~/constants/domains';
 
 const SCOPES = [
@@ -46,16 +45,17 @@ function GetStarted({ loaderData }: Route.ComponentProps) {
   const { url } = loaderData;
 
   return (
-    <Grid container spacing={2} paddingTop={'25vh'} justifyContent="center">
-      <Grid size={{ xs: 11, sm: 6, md: 4 }} textAlign="center">
-        <Typography variant="h2" paddingY={10}>
-          Groove
-        </Typography>
-        <Button variant="contained" href={url}>
+    <div className="flex justify-center pt-[25vh]">
+      <div className="w-full max-w-md text-center">
+        <h2 className="text-4xl font-bold py-10">Groove</h2>
+        <a
+          href={url}
+          className="inline-block px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
           Get Started
-        </Button>
-      </Grid>
-    </Grid>
+        </a>
+      </div>
+    </div>
   );
 }
 

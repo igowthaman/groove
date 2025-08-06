@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, redirect } from 'react-router';
-import { accessTokenCookie, refreshTokenCookie } from '~/utils/cookies.server';
+import { accessTokenCookie, refreshTokenCookie } from '~/utils/cookies';
 import type { Route } from './+types/authLayout';
 
 export async function loader({ request }: Route.LoaderArgs) {

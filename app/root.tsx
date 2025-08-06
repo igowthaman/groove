@@ -6,27 +6,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import type { Route } from './+types/root';
 import './app.css';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000000',
-    },
-  },
-});
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -38,7 +21,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

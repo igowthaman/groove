@@ -1,6 +1,6 @@
 import React from 'react';
 import { data } from 'react-router';
-import { accessTokenCookie } from '~/utils/cookies.server';
+import { accessTokenCookie } from '~/utils/cookies';
 
 export async function loader({ request }: { request: Request }) {
   const cookieHeader = request.headers.get('Cookie');

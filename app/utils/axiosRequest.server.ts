@@ -13,11 +13,21 @@ const authAxios = (method: Method, endpoint: string, params: any) =>
     },
   });
 
-const apiAxios = () =>
-  axios.create({
+const apiAxios = (
+  method: Method,
+  endpoint: string,
+  params: any,
+  data: any,
+  authToken: string
+) =>
+  axios({
+    method,
+    url: endpoint,
+    params: params,
+    data: data,
     baseURL: apiDomain,
     headers: {
-      'Content-Type': 'application/json',
+      Authorization: `Basic ${authToken}`,
     },
   });
 

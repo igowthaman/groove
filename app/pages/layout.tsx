@@ -1,9 +1,8 @@
-import { Grid } from '@mui/material';
 import { data, Outlet, redirect } from 'react-router';
-import ResponsiveAppBar from '~/components/AppBar';
+import AppBar from '~/components/appBar';
 import apiRoutes from '~/constants/apiRoutes';
 import { authAxios } from '~/utils/axiosRequest.server';
-import { accessTokenCookie, refreshTokenCookie } from '~/utils/cookies.server';
+import { accessTokenCookie, refreshTokenCookie } from '~/utils/cookies';
 
 export async function loader({ request }: { request: Request }) {
   const cookieHeader = request.headers.get('Cookie');
@@ -42,13 +41,13 @@ export async function loader({ request }: { request: Request }) {
 
 export default function Layout() {
   return (
-    <Grid container height={'100vh'} width="100%">
-      <Grid sx={{ xs: 1, md: 6}} style={{maxWidth: '200px',height: '100vh', overflowY: 'auto'}}>
-        <ResponsiveAppBar />
-      </Grid>
-      <Grid sx={{ xs: 11, md: 6}} style={{ padding: '20px' }}>
+    <div className="flex h-screen w-full">
+      <div className="max-w-[200px] h-screen overflow-y-auto">
+        <AppBar />
+      </div>
+      <div className="flex-1 p-5">
         <Outlet />
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 }

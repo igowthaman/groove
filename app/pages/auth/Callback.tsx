@@ -5,8 +5,8 @@ import {
   accessTokenCookie,
   refreshTokenCookie,
   stateCookie,
-} from '~/utils/cookies';
-import { authAxios } from '~/utils/axiosRequest.server';
+} from '~/utils/server/cookies';
+import { authAxios } from '~/utils/server/axiosRequest';
 import apiRoutes from '~/constants/apiRoutes';
 
 export async function loader({ request }: Route.LoaderArgs) {

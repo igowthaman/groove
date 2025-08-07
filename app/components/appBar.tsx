@@ -1,41 +1,34 @@
-import * as React from 'react';
-import { data, Link } from 'react-router';
-import { apiAxios } from '~/utils/axiosRequest.server';
-import { accessTokenCookie } from '~/utils/cookies';
+import { Link } from 'react-router';
+import { BooksSvg, GuitarSvg, ProfileSVG, SearchSVG } from '~/assets/svg';
 
-const pages = ['Search', 'Categories', 'Library'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-export async function loader({ request }: { request: Request }) {
-  const cookieHeader = request.headers.get('Cookie');
-  const storedAccessToken = (await accessTokenCookie.parse(cookieHeader)) || '';
-  const userData = await apiAxios('get', '/api/user', {
-    headers: {
-      Authorization: `Bearer ${storedAccessToken}`,
-    },
-  });
-  return data({ accessToken: storedAccessToken, user: userData });
-}
+const pages = ['Search', 'Library', 'Profile'] as const;
+const icons = {
+  Search: <SearchSVG width={18} height={18} />,
+  Library: <BooksSvg width={18} height={18} />,
+  Profile: <ProfileSVG width={18} height={18} />,
+};
 
 function ResponsiveAppBar() {
   return (
-    <div className="h-screen w-full p-4 flex flex-col justify-between">
-      <div>
-        <div>
-          <Link to="/" className="text-2xl font-bold">
-            Groove
+    <div className="h-screen w-[50px] md:w-[150px] flex flex-col align-items-center bg-gray-900 text-white">
+      <Link
+        to="/"
+        className="text-2xl font-bold flex items-center gap-2 dark:text-red-400 p-3 justify-center md:justify-start"
+      >
+        <GuitarSvg />
+        <span className="md:block hidden">Groove</span>
+      </Link>
+      <div className="mt-1 flex flex-col">
+        {pages.map((page) => (
+          <Link
+            to={`/${page.toLowerCase()}`}
+            key={page}
+            className="font-bold flex items-center gap-2 button hover:text-red-400 hover:bg-gray-800 p-3 rounded justify-center transition-colors duration-200 md:justify-start"
+          >
+            {icons[page as keyof typeof icons]}
+            <span className="md:block hidden">{page}</span>
           </Link>
-        </div>
-        <div className="mt-5 flex flex-col gap-5">
-          {pages.map((page) => (
-            <Link to="/" key={page}>{page}</Link>
-          ))}
-        </div>
-      </div>
-      <div>
-        <Link to="/profile">
-          <img src="#" alt="User" />
-        </Link>
+        ))}
       </div>
     </div>
   );

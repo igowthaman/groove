@@ -1,8 +1,8 @@
 import { data, Outlet, redirect } from 'react-router';
 import AppBar from '~/components/appBar';
 import apiRoutes from '~/constants/apiRoutes';
-import { authAxios } from '~/utils/axiosRequest.server';
-import { accessTokenCookie, refreshTokenCookie } from '~/utils/cookies';
+import { authAxios } from '~/utils/server/axiosRequest';
+import { accessTokenCookie, refreshTokenCookie } from '~/utils/server/cookies';
 
 export async function loader({ request }: { request: Request }) {
   const cookieHeader = request.headers.get('Cookie');
@@ -42,7 +42,7 @@ export async function loader({ request }: { request: Request }) {
 export default function Layout() {
   return (
     <div className="flex h-screen w-full">
-      <div className="max-w-[200px] h-screen overflow-y-auto">
+      <div className="h-screen overflow-y-auto">
         <AppBar />
       </div>
       <div className="flex-1 p-5">

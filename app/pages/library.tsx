@@ -8,11 +8,11 @@ export async function loader({ request }: { request: Request }) {
   return data({ accessToken: storedAccessToken });
 }
 
-export default function Search() {
+export default function Library() {
   return (
     <div>
       <h1>Welcome to Groove</h1>
-      <p>This is Search page</p>
+      <p>This is library page</p>
     </div>
   );
 }

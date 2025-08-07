@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Route } from './+types/GetStarted';
 import { data } from 'react-router';
-import { stateCookie } from '~/utils/cookies';
+import { stateCookie } from '~/utils/server/cookies';
 import { authDomain } from '~/constants/domains';
 
 const SCOPES = [
